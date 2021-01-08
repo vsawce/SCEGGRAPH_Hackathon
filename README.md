@@ -18,6 +18,8 @@ The purpose of this project is to develop a new way of connecting people virtual
 <br/>
 ## **Quick Links**<br/>
 [Hackathon Page](https://sceggraph.devpost.com/)<br/>
+[Discord.js Guide](https://discordjs.guide/)<br/>
+[AVR Libc Library](https://www.nongnu.org/avr-libc/)<br/>
 <br/>
 ## **License**<br/>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br/>
