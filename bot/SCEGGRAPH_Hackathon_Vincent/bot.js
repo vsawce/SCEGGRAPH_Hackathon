@@ -2,7 +2,7 @@ console.log('Hello!');
 
 const Discord = require('discord.js'); //
 const client = new Discord.Client(); //
-client.login('Nzk3MjA0MzY5NjczMDI3NjA2.X_jEbQ.C700-iPmV4NucnWRsNVyWMwADWE'); //Authentication with Token
+client.login('TOKEN GOES HERE'); //Authentication with Token. Do not push to repo with Token
 
 client.on('ready', readyDiscord);
 
