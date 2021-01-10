@@ -28,7 +28,7 @@ new to him. Vincent also ran into many hardware-based road bumps along the way, 
 ### Photo of the wireless embedded system
 ![](media/avr_es_photo.png)<br/>
 ### Video demonstration of the wireless embedded system
-[Video Link](https://photos.app.goo.gl/xRHRcCGVzfJfgxV27)<br/>
+[Video Link](https://youtu.be/6kOp-Onfdww)<br/>
 ## Tech/Framework
 * [Node.js](https://nodejs.org/en/) - Selected JS environment for Discord bot development  
 * [Discord.js](https://discord.js.org/#/) - Discord bot API  
