@@ -3,7 +3,7 @@
 # SCEGGRAPH Hackathon: Happy Household
 Remote hackathon held from 1/8/21-1/10/21 for SJSU students, hosted by ACM SIGGRAPH Student Chapter and SCE of SJSU.<br/>
 ## Description
-The purpose of Happy Household was to develop a better way of connecting people through virtual means: we aimed to solve some common issues that arise among those living in the same household.<br/>
+The purpose of Happy Household was to develop a better way of connecting people through virtual means: we aimed to solve some common issues that arise in our household as roommates.<br/>
 One such issue is keeping track of whose turn it is to take out the trash. Solving this issue is especially helpful in households or dorms with multiple roommates and also encourages a fair and balanced chore routine.<br/>
 <br/>
 Another one of these issues includes a disorganized shopping list. When someone goes out to shop or buy food for the household, there is a potential for forgetting certain items due to the messy nature of how these 
