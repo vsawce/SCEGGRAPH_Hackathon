@@ -120,7 +120,28 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="conf.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="esp8266_esp01.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="esp8266_esp01.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="nokia_5110.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="nokia_5110.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="spi.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
