@@ -37,6 +37,7 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../buttons.c \
 ../esp8266_esp01.c \
 ../main.c \
 ../nokia_5110.c \
@@ -52,6 +53,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+buttons.o \
 esp8266_esp01.o \
 main.o \
 nokia_5110.o \
@@ -60,6 +62,7 @@ uart.o \
 uart_printf.o
 
 OBJS_AS_ARGS +=  \
+buttons.o \
 esp8266_esp01.o \
 main.o \
 nokia_5110.o \
@@ -68,6 +71,7 @@ uart.o \
 uart_printf.o
 
 C_DEPS +=  \
+buttons.d \
 esp8266_esp01.d \
 main.d \
 nokia_5110.d \
@@ -76,6 +80,7 @@ uart.d \
 uart_printf.d
 
 C_DEPS_AS_ARGS +=  \
+buttons.d \
 esp8266_esp01.d \
 main.d \
 nokia_5110.d \
@@ -97,6 +102,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+./buttons.o: .././buttons.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)F:\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"F:\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "F:\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./esp8266_esp01.o: .././esp8266_esp01.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0

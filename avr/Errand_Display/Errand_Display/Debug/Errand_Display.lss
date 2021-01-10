@@ -3,29 +3,29 @@ Errand_Display.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000244  00800100  00000606  0000067a  2**0
+  0 .data         0000023e  00800100  0000079e  00000812  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000606  00000000  00000000  00000074  2**1
+  1 .text         0000079e  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  000008be  2**0
+  2 .comment      00000030  00000000  00000000  00000a50  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000008f0  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000a80  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 000000e0  00000000  00000000  00000930  2**0
+  4 .debug_aranges 00000170  00000000  00000000  00000ac0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000f6f  00000000  00000000  00000a10  2**0
+  5 .debug_info   000013de  00000000  00000000  00000c30  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000009e8  00000000  00000000  0000197f  2**0
+  6 .debug_abbrev 00000ba8  00000000  00000000  0000200e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000708  00000000  00000000  00002367  2**0
+  7 .debug_line   00000a2d  00000000  00000000  00002bb6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000001dc  00000000  00000000  00002a70  2**2
+  8 .debug_frame  000002a0  00000000  00000000  000035e4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000004f8  00000000  00000000  00002c4c  2**0
+  9 .debug_str    000005dd  00000000  00000000  00003884  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000062a  00000000  00000000  00003144  2**0
+ 10 .debug_loc    000007c6  00000000  00000000  00003e61  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 000000e0  00000000  00000000  0000376e  2**0
+ 11 .debug_ranges 00000140  00000000  00000000  00004627  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -312,582 +312,880 @@ Disassembly of section .text:
  254:	13 e0       	ldi	r17, 0x03	; 3
  256:	a0 e0       	ldi	r26, 0x00	; 0
  258:	b1 e0       	ldi	r27, 0x01	; 1
- 25a:	e6 e0       	ldi	r30, 0x06	; 6
- 25c:	f6 e0       	ldi	r31, 0x06	; 6
+ 25a:	ee e9       	ldi	r30, 0x9E	; 158
+ 25c:	f7 e0       	ldi	r31, 0x07	; 7
  25e:	02 c0       	rjmp	.+4      	; 0x264 <__do_copy_data+0x10>
  260:	05 90       	lpm	r0, Z+
  262:	0d 92       	st	X+, r0
- 264:	a4 34       	cpi	r26, 0x44	; 68
+ 264:	ae 33       	cpi	r26, 0x3E	; 62
  266:	b1 07       	cpc	r27, r17
  268:	d9 f7       	brne	.-10     	; 0x260 <__do_copy_data+0xc>
- 26a:	0e 94 3b 01 	call	0x276	; 0x276 <main>
- 26e:	0c 94 01 03 	jmp	0x602	; 0x602 <_exit>
+ 26a:	0e 94 64 01 	call	0x2c8	; 0x2c8 <main>
+ 26e:	0c 94 cd 03 	jmp	0x79a	; 0x79a <_exit>
 
 00000272 <__bad_interrupt>:
  272:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000276 <main>:
-#include "spi.h"
-#include "nokia_5110.h"
+00000276 <buttons__poll>:
+﻿#include "buttons.h"
 
 
-int main(void)
-{
- 276:	cf 93       	push	r28
- 278:	df 93       	push	r29
- 27a:	cd b7       	in	r28, 0x3d	; 61
- 27c:	de b7       	in	r29, 0x3e	; 62
- 27e:	cb 54       	subi	r28, 0x4B	; 75
- 280:	d1 09       	sbc	r29, r1
- 282:	0f b6       	in	r0, 0x3f	; 63
- 284:	f8 94       	cli
- 286:	de bf       	out	0x3e, r29	; 62
- 288:	0f be       	out	0x3f, r0	; 63
- 28a:	cd bf       	out	0x3d, r28	; 61
-	char test[5][15] = {"Trash: Vincent", "Dishes: Chris", "Vac: Quin", "Cook: Mick", "Idle: Sarah"};
- 28c:	8b e4       	ldi	r24, 0x4B	; 75
- 28e:	e9 ef       	ldi	r30, 0xF9	; 249
- 290:	f2 e0       	ldi	r31, 0x02	; 2
- 292:	8e 01       	movw	r16, r28
- 294:	0f 5f       	subi	r16, 0xFF	; 255
- 296:	1f 4f       	sbci	r17, 0xFF	; 255
- 298:	d8 01       	movw	r26, r16
- 29a:	01 90       	ld	r0, Z+
- 29c:	0d 92       	st	X+, r0
- 29e:	8a 95       	dec	r24
- 2a0:	e1 f7       	brne	.-8      	; 0x29a <main+0x24>
-	spi__init();	
- 2a2:	0e 94 eb 02 	call	0x5d6	; 0x5d6 <spi__init>
-	nokia__init();
- 2a6:	0e 94 e0 01 	call	0x3c0	; 0x3c0 <nokia__init>
-	//nokia__str(test, 16, 0, 0);
-	//nokia__update();
-	nokia__cursor_origin();
- 2aa:	0e 94 bd 01 	call	0x37a	; 0x37a <nokia__cursor_origin>
-	nokia__str(test[0], strlen(test[0]), 0, 0);
- 2ae:	f8 01       	movw	r30, r16
- 2b0:	01 90       	ld	r0, Z+
- 2b2:	00 20       	and	r0, r0
- 2b4:	e9 f7       	brne	.-6      	; 0x2b0 <main+0x3a>
- 2b6:	31 97       	sbiw	r30, 0x01	; 1
- 2b8:	bf 01       	movw	r22, r30
- 2ba:	60 1b       	sub	r22, r16
- 2bc:	71 0b       	sbc	r23, r17
- 2be:	20 e0       	ldi	r18, 0x00	; 0
- 2c0:	40 e0       	ldi	r20, 0x00	; 0
- 2c2:	c8 01       	movw	r24, r16
- 2c4:	0e 94 c4 02 	call	0x588	; 0x588 <nokia__str>
-	nokia__str(test[1], strlen(test[1]), 0, 8);
- 2c8:	ce 01       	movw	r24, r28
- 2ca:	40 96       	adiw	r24, 0x10	; 16
- 2cc:	fc 01       	movw	r30, r24
- 2ce:	01 90       	ld	r0, Z+
- 2d0:	00 20       	and	r0, r0
- 2d2:	e9 f7       	brne	.-6      	; 0x2ce <main+0x58>
- 2d4:	31 97       	sbiw	r30, 0x01	; 1
- 2d6:	bf 01       	movw	r22, r30
- 2d8:	68 1b       	sub	r22, r24
- 2da:	79 0b       	sbc	r23, r25
- 2dc:	28 e0       	ldi	r18, 0x08	; 8
- 2de:	40 e0       	ldi	r20, 0x00	; 0
- 2e0:	0e 94 c4 02 	call	0x588	; 0x588 <nokia__str>
-	nokia__str(test[2], strlen(test[2]), 0, 16);
- 2e4:	ce 01       	movw	r24, r28
- 2e6:	4f 96       	adiw	r24, 0x1f	; 31
- 2e8:	fc 01       	movw	r30, r24
- 2ea:	01 90       	ld	r0, Z+
- 2ec:	00 20       	and	r0, r0
- 2ee:	e9 f7       	brne	.-6      	; 0x2ea <main+0x74>
- 2f0:	31 97       	sbiw	r30, 0x01	; 1
- 2f2:	bf 01       	movw	r22, r30
- 2f4:	68 1b       	sub	r22, r24
- 2f6:	79 0b       	sbc	r23, r25
- 2f8:	20 e1       	ldi	r18, 0x10	; 16
- 2fa:	40 e0       	ldi	r20, 0x00	; 0
- 2fc:	0e 94 c4 02 	call	0x588	; 0x588 <nokia__str>
-	nokia__str(test[3], strlen(test[3]), 0, 24);
- 300:	ce 01       	movw	r24, r28
- 302:	8e 96       	adiw	r24, 0x2e	; 46
- 304:	fc 01       	movw	r30, r24
- 306:	01 90       	ld	r0, Z+
- 308:	00 20       	and	r0, r0
- 30a:	e9 f7       	brne	.-6      	; 0x306 <main+0x90>
- 30c:	31 97       	sbiw	r30, 0x01	; 1
- 30e:	bf 01       	movw	r22, r30
- 310:	68 1b       	sub	r22, r24
- 312:	79 0b       	sbc	r23, r25
- 314:	28 e1       	ldi	r18, 0x18	; 24
- 316:	40 e0       	ldi	r20, 0x00	; 0
- 318:	0e 94 c4 02 	call	0x588	; 0x588 <nokia__str>
-	nokia__str(test[4], strlen(test[4]), 0, 32);
- 31c:	ce 01       	movw	r24, r28
- 31e:	cd 96       	adiw	r24, 0x3d	; 61
- 320:	fc 01       	movw	r30, r24
- 322:	01 90       	ld	r0, Z+
- 324:	00 20       	and	r0, r0
- 326:	e9 f7       	brne	.-6      	; 0x322 <main+0xac>
- 328:	31 97       	sbiw	r30, 0x01	; 1
- 32a:	bf 01       	movw	r22, r30
- 32c:	68 1b       	sub	r22, r24
- 32e:	79 0b       	sbc	r23, r25
- 330:	20 e2       	ldi	r18, 0x20	; 32
- 332:	40 e0       	ldi	r20, 0x00	; 0
- 334:	0e 94 c4 02 	call	0x588	; 0x588 <nokia__str>
-	//nokia__scale(2);
-	//nokia__char('B', 20, 0);
-	//nokia__scale(3);
-	//nokia__char('C', 40, 0);
-	//nokia__fill();
-	nokia__update();
- 338:	0e 94 c2 01 	call	0x384	; 0x384 <nokia__update>
+void buttons__poll() {
+	uint16_t timer = 0;
+	while (!(PINC & (1<<BUT1))) {
+ 276:	30 99       	sbic	0x06, 0	; 6
+ 278:	0f c0       	rjmp	.+30     	; 0x298 <buttons__poll+0x22>
+ 27a:	80 e0       	ldi	r24, 0x00	; 0
+ 27c:	90 e0       	ldi	r25, 0x00	; 0
+		timer++;
+ 27e:	01 96       	adiw	r24, 0x01	; 1
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 33c:	2f ef       	ldi	r18, 0xFF	; 255
- 33e:	83 ed       	ldi	r24, 0xD3	; 211
- 340:	90 e3       	ldi	r25, 0x30	; 48
- 342:	21 50       	subi	r18, 0x01	; 1
- 344:	80 40       	sbci	r24, 0x00	; 0
- 346:	90 40       	sbci	r25, 0x00	; 0
- 348:	e1 f7       	brne	.-8      	; 0x342 <main+0xcc>
- 34a:	00 c0       	rjmp	.+0      	; 0x34c <main+0xd6>
- 34c:	00 00       	nop
- 34e:	f6 cf       	rjmp	.-20     	; 0x33c <main+0xc6>
+ 280:	ef e9       	ldi	r30, 0x9F	; 159
+ 282:	ff e0       	ldi	r31, 0x0F	; 15
+ 284:	31 97       	sbiw	r30, 0x01	; 1
+ 286:	f1 f7       	brne	.-4      	; 0x284 <buttons__poll+0xe>
+ 288:	00 c0       	rjmp	.+0      	; 0x28a <buttons__poll+0x14>
+ 28a:	00 00       	nop
+﻿#include "buttons.h"
 
-00000350 <nokia__cmd>:
+
+void buttons__poll() {
+	uint16_t timer = 0;
+	while (!(PINC & (1<<BUT1))) {
+ 28c:	30 9b       	sbis	0x06, 0	; 6
+ 28e:	f7 cf       	rjmp	.-18     	; 0x27e <buttons__poll+0x8>
+		timer++;
+		_delay_ms(1);
+	}
+	if (timer > DEBOUNCE_TIME) {
+ 290:	0b 97       	sbiw	r24, 0x0b	; 11
+ 292:	10 f0       	brcs	.+4      	; 0x298 <buttons__poll+0x22>
+		nokia__select_state();
+ 294:	0e 94 20 03 	call	0x640	; 0x640 <nokia__select_state>
+	}
+	
+	timer = 0;
+	while (!(PINC & (1<<BUT2))) {
+ 298:	31 99       	sbic	0x06, 1	; 6
+ 29a:	0f c0       	rjmp	.+30     	; 0x2ba <buttons__poll+0x44>
+ 29c:	80 e0       	ldi	r24, 0x00	; 0
+ 29e:	90 e0       	ldi	r25, 0x00	; 0
+		timer++;
+ 2a0:	01 96       	adiw	r24, 0x01	; 1
+ 2a2:	ef e9       	ldi	r30, 0x9F	; 159
+ 2a4:	ff e0       	ldi	r31, 0x0F	; 15
+ 2a6:	31 97       	sbiw	r30, 0x01	; 1
+ 2a8:	f1 f7       	brne	.-4      	; 0x2a6 <buttons__poll+0x30>
+ 2aa:	00 c0       	rjmp	.+0      	; 0x2ac <buttons__poll+0x36>
+ 2ac:	00 00       	nop
+	if (timer > DEBOUNCE_TIME) {
+		nokia__select_state();
+	}
+	
+	timer = 0;
+	while (!(PINC & (1<<BUT2))) {
+ 2ae:	31 9b       	sbis	0x06, 1	; 6
+ 2b0:	f7 cf       	rjmp	.-18     	; 0x2a0 <buttons__poll+0x2a>
+		timer++;
+		_delay_ms(1);
+	}
+	if (timer > DEBOUNCE_TIME)
+ 2b2:	0b 97       	sbiw	r24, 0x0b	; 11
+ 2b4:	10 f0       	brcs	.+4      	; 0x2ba <buttons__poll+0x44>
+		nokia__next_state();
+ 2b6:	0e 94 fc 02 	call	0x5f8	; 0x5f8 <nokia__next_state>
+ 2ba:	08 95       	ret
+
+000002bc <esp__transmit_state>:
+#include "esp8266_esp01.h"
+
+void esp__transmit_state() {
+	uart__polled_put(state+'60');
+ 2bc:	80 91 35 03 	lds	r24, 0x0335	; 0x800335 <state>
+ 2c0:	80 5d       	subi	r24, 0xD0	; 208
+ 2c2:	0e 94 94 03 	call	0x728	; 0x728 <uart__polled_put>
+ 2c6:	08 95       	ret
+
+000002c8 <main>:
+
+
+int main(void)
+{
+	//char test[5][15] = {"Trash: Vincent", "Dishes: Chris", "Vac: Quin", "Cook: Mick", "Idle: Sarah"};
+	uart__init(9600);
+ 2c8:	60 e8       	ldi	r22, 0x80	; 128
+ 2ca:	75 e2       	ldi	r23, 0x25	; 37
+ 2cc:	80 e0       	ldi	r24, 0x00	; 0
+ 2ce:	90 e0       	ldi	r25, 0x00	; 0
+ 2d0:	0e 94 54 03 	call	0x6a8	; 0x6a8 <uart__init>
+	spi__init();	
+ 2d4:	0e 94 4a 03 	call	0x694	; 0x694 <spi__init>
+	nokia__init();
+ 2d8:	0e 94 ab 01 	call	0x356	; 0x356 <nokia__init>
+	//buttons__init();
+	nokia__default();
+ 2dc:	0e 94 b6 02 	call	0x56c	; 0x56c <nokia__default>
+		//nokia__fill();
+		//nokia__update();
+		//uart__polled_put('a');
+		//_delay_ms(100);
+		//nokia__next_state();
+		buttons__poll();
+ 2e0:	0e 94 3b 01 	call	0x276	; 0x276 <buttons__poll>
+ 2e4:	fd cf       	rjmp	.-6      	; 0x2e0 <main+0x18>
+
+000002e6 <nokia__cmd>:
 		}
 	}
 }
 
 void nokia__scale(uint8_t sc) {
 	scale = sc;
- 350:	5d 98       	cbi	0x0b, 5	; 11
- 352:	2a 98       	cbi	0x05, 2	; 5
- 354:	0e 94 f0 02 	call	0x5e0	; 0x5e0 <spi__write>
- 358:	2a 9a       	sbi	0x05, 2	; 5
- 35a:	08 95       	ret
+ 2e6:	5d 98       	cbi	0x0b, 5	; 11
+ 2e8:	2a 98       	cbi	0x05, 2	; 5
+ 2ea:	0e 94 4f 03 	call	0x69e	; 0x69e <spi__write>
+ 2ee:	2a 9a       	sbi	0x05, 2	; 5
+ 2f0:	08 95       	ret
 
-0000035c <nokia__data>:
- 35c:	5d 9a       	sbi	0x0b, 5	; 11
- 35e:	2a 98       	cbi	0x05, 2	; 5
- 360:	0e 94 f0 02 	call	0x5e0	; 0x5e0 <spi__write>
- 364:	2a 9a       	sbi	0x05, 2	; 5
- 366:	08 95       	ret
+000002f2 <nokia__data>:
+ 2f2:	5d 9a       	sbi	0x0b, 5	; 11
+ 2f4:	2a 98       	cbi	0x05, 2	; 5
+ 2f6:	0e 94 4f 03 	call	0x69e	; 0x69e <spi__write>
+ 2fa:	2a 9a       	sbi	0x05, 2	; 5
+ 2fc:	08 95       	ret
 
-00000368 <nokia__cursor>:
- 368:	cf 93       	push	r28
- 36a:	c6 2f       	mov	r28, r22
- 36c:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 370:	8c 2f       	mov	r24, r28
- 372:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 376:	cf 91       	pop	r28
- 378:	08 95       	ret
+000002fe <nokia__cursor>:
+ 2fe:	cf 93       	push	r28
+ 300:	c6 2f       	mov	r28, r22
+ 302:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 306:	8c 2f       	mov	r24, r28
+ 308:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 30c:	cf 91       	pop	r28
+ 30e:	08 95       	ret
 
-0000037a <nokia__cursor_origin>:
- 37a:	60 e0       	ldi	r22, 0x00	; 0
- 37c:	80 e0       	ldi	r24, 0x00	; 0
- 37e:	0e 94 b4 01 	call	0x368	; 0x368 <nokia__cursor>
- 382:	08 95       	ret
+00000310 <nokia__cursor_origin>:
+ 310:	60 e0       	ldi	r22, 0x00	; 0
+ 312:	80 e0       	ldi	r24, 0x00	; 0
+ 314:	0e 94 7f 01 	call	0x2fe	; 0x2fe <nokia__cursor>
+ 318:	08 95       	ret
 
-00000384 <nokia__update>:
- 384:	0f 93       	push	r16
- 386:	1f 93       	push	r17
- 388:	cf 93       	push	r28
- 38a:	df 93       	push	r29
- 38c:	0e 94 bd 01 	call	0x37a	; 0x37a <nokia__cursor_origin>
- 390:	c1 e0       	ldi	r28, 0x01	; 1
- 392:	d1 e0       	ldi	r29, 0x01	; 1
- 394:	09 ef       	ldi	r16, 0xF9	; 249
- 396:	12 e0       	ldi	r17, 0x02	; 2
- 398:	89 91       	ld	r24, Y+
- 39a:	0e 94 ae 01 	call	0x35c	; 0x35c <nokia__data>
- 39e:	c0 17       	cp	r28, r16
- 3a0:	d1 07       	cpc	r29, r17
- 3a2:	d1 f7       	brne	.-12     	; 0x398 <nokia__update+0x14>
- 3a4:	df 91       	pop	r29
- 3a6:	cf 91       	pop	r28
- 3a8:	1f 91       	pop	r17
- 3aa:	0f 91       	pop	r16
- 3ac:	08 95       	ret
+0000031a <nokia__update>:
+ 31a:	0f 93       	push	r16
+ 31c:	1f 93       	push	r17
+ 31e:	cf 93       	push	r28
+ 320:	df 93       	push	r29
+ 322:	0e 94 88 01 	call	0x310	; 0x310 <nokia__cursor_origin>
+ 326:	cd e3       	ldi	r28, 0x3D	; 61
+ 328:	d1 e0       	ldi	r29, 0x01	; 1
+ 32a:	05 e3       	ldi	r16, 0x35	; 53
+ 32c:	13 e0       	ldi	r17, 0x03	; 3
+ 32e:	89 91       	ld	r24, Y+
+ 330:	0e 94 79 01 	call	0x2f2	; 0x2f2 <nokia__data>
+ 334:	c0 17       	cp	r28, r16
+ 336:	d1 07       	cpc	r29, r17
+ 338:	d1 f7       	brne	.-12     	; 0x32e <nokia__update+0x14>
+ 33a:	df 91       	pop	r29
+ 33c:	cf 91       	pop	r28
+ 33e:	1f 91       	pop	r17
+ 340:	0f 91       	pop	r16
+ 342:	08 95       	ret
 
-000003ae <nokia__wipe>:
- 3ae:	e1 e0       	ldi	r30, 0x01	; 1
- 3b0:	f1 e0       	ldi	r31, 0x01	; 1
- 3b2:	89 ef       	ldi	r24, 0xF9	; 249
- 3b4:	92 e0       	ldi	r25, 0x02	; 2
- 3b6:	11 92       	st	Z+, r1
- 3b8:	e8 17       	cp	r30, r24
- 3ba:	f9 07       	cpc	r31, r25
- 3bc:	e1 f7       	brne	.-8      	; 0x3b6 <nokia__wipe+0x8>
- 3be:	08 95       	ret
+00000344 <nokia__wipe>:
+ 344:	ed e3       	ldi	r30, 0x3D	; 61
+ 346:	f1 e0       	ldi	r31, 0x01	; 1
+ 348:	85 e3       	ldi	r24, 0x35	; 53
+ 34a:	93 e0       	ldi	r25, 0x03	; 3
+ 34c:	11 92       	st	Z+, r1
+ 34e:	e8 17       	cp	r30, r24
+ 350:	f9 07       	cpc	r31, r25
+ 352:	e1 f7       	brne	.-8      	; 0x34c <nokia__wipe+0x8>
+ 354:	08 95       	ret
 
-000003c0 <nokia__init>:
- 3c0:	80 e6       	ldi	r24, 0x60	; 96
- 3c2:	8a b9       	out	0x0a, r24	; 10
- 3c4:	5e 9a       	sbi	0x0b, 6	; 11
- 3c6:	2a 9a       	sbi	0x05, 2	; 5
- 3c8:	8f e3       	ldi	r24, 0x3F	; 63
- 3ca:	9c e9       	ldi	r25, 0x9C	; 156
- 3cc:	01 97       	sbiw	r24, 0x01	; 1
- 3ce:	f1 f7       	brne	.-4      	; 0x3cc <nokia__init+0xc>
- 3d0:	00 c0       	rjmp	.+0      	; 0x3d2 <nokia__init+0x12>
- 3d2:	00 00       	nop
- 3d4:	5e 98       	cbi	0x0b, 6	; 11
- 3d6:	9f ef       	ldi	r25, 0xFF	; 255
- 3d8:	2a e6       	ldi	r18, 0x6A	; 106
- 3da:	83 e0       	ldi	r24, 0x03	; 3
- 3dc:	91 50       	subi	r25, 0x01	; 1
- 3de:	20 40       	sbci	r18, 0x00	; 0
- 3e0:	80 40       	sbci	r24, 0x00	; 0
- 3e2:	e1 f7       	brne	.-8      	; 0x3dc <nokia__init+0x1c>
- 3e4:	00 c0       	rjmp	.+0      	; 0x3e6 <nokia__init+0x26>
- 3e6:	00 00       	nop
- 3e8:	5e 9a       	sbi	0x0b, 6	; 11
- 3ea:	2a 98       	cbi	0x05, 2	; 5
- 3ec:	81 e2       	ldi	r24, 0x21	; 33
- 3ee:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 3f2:	86 e0       	ldi	r24, 0x06	; 6
- 3f4:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 3f8:	83 e1       	ldi	r24, 0x13	; 19
- 3fa:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 3fe:	82 ec       	ldi	r24, 0xC2	; 194
- 400:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 404:	80 e2       	ldi	r24, 0x20	; 32
- 406:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 40a:	89 e0       	ldi	r24, 0x09	; 9
- 40c:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 410:	80 e8       	ldi	r24, 0x80	; 128
- 412:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 416:	80 e4       	ldi	r24, 0x40	; 64
- 418:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 41c:	0e 94 d7 01 	call	0x3ae	; 0x3ae <nokia__wipe>
- 420:	88 e0       	ldi	r24, 0x08	; 8
- 422:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 426:	8c e0       	ldi	r24, 0x0C	; 12
- 428:	0e 94 a8 01 	call	0x350	; 0x350 <nokia__cmd>
- 42c:	08 95       	ret
+00000356 <nokia__init>:
+ 356:	80 e6       	ldi	r24, 0x60	; 96
+ 358:	8a b9       	out	0x0a, r24	; 10
+ 35a:	5e 9a       	sbi	0x0b, 6	; 11
+ 35c:	2a 9a       	sbi	0x05, 2	; 5
+ 35e:	8f e3       	ldi	r24, 0x3F	; 63
+ 360:	9c e9       	ldi	r25, 0x9C	; 156
+ 362:	01 97       	sbiw	r24, 0x01	; 1
+ 364:	f1 f7       	brne	.-4      	; 0x362 <nokia__init+0xc>
+ 366:	00 c0       	rjmp	.+0      	; 0x368 <nokia__init+0x12>
+ 368:	00 00       	nop
+ 36a:	5e 98       	cbi	0x0b, 6	; 11
+ 36c:	9f ef       	ldi	r25, 0xFF	; 255
+ 36e:	2a e6       	ldi	r18, 0x6A	; 106
+ 370:	83 e0       	ldi	r24, 0x03	; 3
+ 372:	91 50       	subi	r25, 0x01	; 1
+ 374:	20 40       	sbci	r18, 0x00	; 0
+ 376:	80 40       	sbci	r24, 0x00	; 0
+ 378:	e1 f7       	brne	.-8      	; 0x372 <nokia__init+0x1c>
+ 37a:	00 c0       	rjmp	.+0      	; 0x37c <nokia__init+0x26>
+ 37c:	00 00       	nop
+ 37e:	5e 9a       	sbi	0x0b, 6	; 11
+ 380:	2a 98       	cbi	0x05, 2	; 5
+ 382:	81 e2       	ldi	r24, 0x21	; 33
+ 384:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 388:	86 e0       	ldi	r24, 0x06	; 6
+ 38a:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 38e:	83 e1       	ldi	r24, 0x13	; 19
+ 390:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 394:	82 ec       	ldi	r24, 0xC2	; 194
+ 396:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 39a:	80 e2       	ldi	r24, 0x20	; 32
+ 39c:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 3a0:	89 e0       	ldi	r24, 0x09	; 9
+ 3a2:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 3a6:	80 e8       	ldi	r24, 0x80	; 128
+ 3a8:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 3ac:	80 e4       	ldi	r24, 0x40	; 64
+ 3ae:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 3b2:	0e 94 a2 01 	call	0x344	; 0x344 <nokia__wipe>
+ 3b6:	88 e0       	ldi	r24, 0x08	; 8
+ 3b8:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 3bc:	8c e0       	ldi	r24, 0x0C	; 12
+ 3be:	0e 94 73 01 	call	0x2e6	; 0x2e6 <nokia__cmd>
+ 3c2:	08 95       	ret
 
-0000042e <nokia__pixel>:
- 42e:	84 35       	cpi	r24, 0x54	; 84
- 430:	a0 f5       	brcc	.+104    	; 0x49a <nokia__pixel+0x6c>
- 432:	60 33       	cpi	r22, 0x30	; 48
- 434:	90 f5       	brcc	.+100    	; 0x49a <nokia__pixel+0x6c>
- 436:	26 2f       	mov	r18, r22
- 438:	27 70       	andi	r18, 0x07	; 7
- 43a:	44 23       	and	r20, r20
- 43c:	b9 f0       	breq	.+46     	; 0x46c <nokia__pixel+0x3e>
- 43e:	66 95       	lsr	r22
- 440:	66 95       	lsr	r22
- 442:	66 95       	lsr	r22
- 444:	e8 2f       	mov	r30, r24
- 446:	f0 e0       	ldi	r31, 0x00	; 0
- 448:	84 e5       	ldi	r24, 0x54	; 84
- 44a:	68 9f       	mul	r22, r24
- 44c:	e0 0d       	add	r30, r0
- 44e:	f1 1d       	adc	r31, r1
- 450:	11 24       	eor	r1, r1
- 452:	ef 5f       	subi	r30, 0xFF	; 255
- 454:	fe 4f       	sbci	r31, 0xFE	; 254
- 456:	81 e0       	ldi	r24, 0x01	; 1
- 458:	90 e0       	ldi	r25, 0x00	; 0
- 45a:	02 c0       	rjmp	.+4      	; 0x460 <nokia__pixel+0x32>
- 45c:	88 0f       	add	r24, r24
- 45e:	99 1f       	adc	r25, r25
- 460:	2a 95       	dec	r18
- 462:	e2 f7       	brpl	.-8      	; 0x45c <nokia__pixel+0x2e>
- 464:	90 81       	ld	r25, Z
- 466:	89 2b       	or	r24, r25
- 468:	80 83       	st	Z, r24
- 46a:	08 95       	ret
- 46c:	66 95       	lsr	r22
- 46e:	66 95       	lsr	r22
- 470:	66 95       	lsr	r22
- 472:	e8 2f       	mov	r30, r24
- 474:	f0 e0       	ldi	r31, 0x00	; 0
- 476:	84 e5       	ldi	r24, 0x54	; 84
- 478:	68 9f       	mul	r22, r24
- 47a:	e0 0d       	add	r30, r0
- 47c:	f1 1d       	adc	r31, r1
- 47e:	11 24       	eor	r1, r1
- 480:	ef 5f       	subi	r30, 0xFF	; 255
- 482:	fe 4f       	sbci	r31, 0xFE	; 254
- 484:	81 e0       	ldi	r24, 0x01	; 1
- 486:	90 e0       	ldi	r25, 0x00	; 0
- 488:	02 c0       	rjmp	.+4      	; 0x48e <nokia__pixel+0x60>
- 48a:	88 0f       	add	r24, r24
- 48c:	99 1f       	adc	r25, r25
- 48e:	2a 95       	dec	r18
- 490:	e2 f7       	brpl	.-8      	; 0x48a <nokia__pixel+0x5c>
- 492:	80 95       	com	r24
- 494:	90 81       	ld	r25, Z
- 496:	89 23       	and	r24, r25
- 498:	80 83       	st	Z, r24
- 49a:	08 95       	ret
+000003c4 <nokia__pixel>:
+ 3c4:	84 35       	cpi	r24, 0x54	; 84
+ 3c6:	a0 f5       	brcc	.+104    	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
+ 3c8:	60 33       	cpi	r22, 0x30	; 48
+ 3ca:	90 f5       	brcc	.+100    	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
+ 3cc:	26 2f       	mov	r18, r22
+ 3ce:	27 70       	andi	r18, 0x07	; 7
+ 3d0:	44 23       	and	r20, r20
+ 3d2:	b9 f0       	breq	.+46     	; 0x402 <__LOCK_REGION_LENGTH__+0x2>
+ 3d4:	66 95       	lsr	r22
+ 3d6:	66 95       	lsr	r22
+ 3d8:	66 95       	lsr	r22
+ 3da:	e8 2f       	mov	r30, r24
+ 3dc:	f0 e0       	ldi	r31, 0x00	; 0
+ 3de:	84 e5       	ldi	r24, 0x54	; 84
+ 3e0:	68 9f       	mul	r22, r24
+ 3e2:	e0 0d       	add	r30, r0
+ 3e4:	f1 1d       	adc	r31, r1
+ 3e6:	11 24       	eor	r1, r1
+ 3e8:	e3 5c       	subi	r30, 0xC3	; 195
+ 3ea:	fe 4f       	sbci	r31, 0xFE	; 254
+ 3ec:	81 e0       	ldi	r24, 0x01	; 1
+ 3ee:	90 e0       	ldi	r25, 0x00	; 0
+ 3f0:	02 c0       	rjmp	.+4      	; 0x3f6 <nokia__pixel+0x32>
+ 3f2:	88 0f       	add	r24, r24
+ 3f4:	99 1f       	adc	r25, r25
+ 3f6:	2a 95       	dec	r18
+ 3f8:	e2 f7       	brpl	.-8      	; 0x3f2 <nokia__pixel+0x2e>
+ 3fa:	90 81       	ld	r25, Z
+ 3fc:	89 2b       	or	r24, r25
+ 3fe:	80 83       	st	Z, r24
+ 400:	08 95       	ret
+ 402:	66 95       	lsr	r22
+ 404:	66 95       	lsr	r22
+ 406:	66 95       	lsr	r22
+ 408:	e8 2f       	mov	r30, r24
+ 40a:	f0 e0       	ldi	r31, 0x00	; 0
+ 40c:	84 e5       	ldi	r24, 0x54	; 84
+ 40e:	68 9f       	mul	r22, r24
+ 410:	e0 0d       	add	r30, r0
+ 412:	f1 1d       	adc	r31, r1
+ 414:	11 24       	eor	r1, r1
+ 416:	e3 5c       	subi	r30, 0xC3	; 195
+ 418:	fe 4f       	sbci	r31, 0xFE	; 254
+ 41a:	81 e0       	ldi	r24, 0x01	; 1
+ 41c:	90 e0       	ldi	r25, 0x00	; 0
+ 41e:	02 c0       	rjmp	.+4      	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+ 420:	88 0f       	add	r24, r24
+ 422:	99 1f       	adc	r25, r25
+ 424:	2a 95       	dec	r18
+ 426:	e2 f7       	brpl	.-8      	; 0x420 <__LOCK_REGION_LENGTH__+0x20>
+ 428:	80 95       	com	r24
+ 42a:	90 81       	ld	r25, Z
+ 42c:	89 23       	and	r24, r25
+ 42e:	80 83       	st	Z, r24
+ 430:	08 95       	ret
 
-0000049c <nokia__char>:
+00000432 <nokia__char>:
 }
 
 
 void nokia__char(char c, uint8_t x, uint8_t y) {
- 49c:	df 92       	push	r13
- 49e:	ef 92       	push	r14
- 4a0:	ff 92       	push	r15
- 4a2:	0f 93       	push	r16
- 4a4:	1f 93       	push	r17
- 4a6:	cf 93       	push	r28
- 4a8:	df 93       	push	r29
+ 432:	df 92       	push	r13
+ 434:	ef 92       	push	r14
+ 436:	ff 92       	push	r15
+ 438:	0f 93       	push	r16
+ 43a:	1f 93       	push	r17
+ 43c:	cf 93       	push	r28
+ 43e:	df 93       	push	r29
 	//char col;
 	for (uint8_t i = 0; i < 5*scale; ++i) {
- 4aa:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__data_start>
- 4ae:	30 e0       	ldi	r19, 0x00	; 0
- 4b0:	f9 01       	movw	r30, r18
- 4b2:	ee 0f       	add	r30, r30
- 4b4:	ff 1f       	adc	r31, r31
- 4b6:	ee 0f       	add	r30, r30
- 4b8:	ff 1f       	adc	r31, r31
- 4ba:	2e 0f       	add	r18, r30
- 4bc:	3f 1f       	adc	r19, r31
- 4be:	12 16       	cp	r1, r18
- 4c0:	13 06       	cpc	r1, r19
- 4c2:	0c f4       	brge	.+2      	; 0x4c6 <nokia__char+0x2a>
- 4c4:	46 c0       	rjmp	.+140    	; 0x552 <nokia__char+0xb6>
- 4c6:	58 c0       	rjmp	.+176    	; 0x578 <nokia__char+0xdc>
+ 440:	20 91 3c 01 	lds	r18, 0x013C	; 0x80013c <scale>
+ 444:	30 e0       	ldi	r19, 0x00	; 0
+ 446:	f9 01       	movw	r30, r18
+ 448:	ee 0f       	add	r30, r30
+ 44a:	ff 1f       	adc	r31, r31
+ 44c:	ee 0f       	add	r30, r30
+ 44e:	ff 1f       	adc	r31, r31
+ 450:	2e 0f       	add	r18, r30
+ 452:	3f 1f       	adc	r19, r31
+ 454:	12 16       	cp	r1, r18
+ 456:	13 06       	cpc	r1, r19
+ 458:	0c f4       	brge	.+2      	; 0x45c <nokia__char+0x2a>
+ 45a:	46 c0       	rjmp	.+140    	; 0x4e8 <nokia__char+0xb6>
+ 45c:	58 c0       	rjmp	.+176    	; 0x50e <nokia__char+0xdc>
 		//col = ASCII[c - 0x20][i];
 		for (uint8_t j = 0; j < 8*scale; ++j) {
- 4c8:	0d 2d       	mov	r16, r13
- 4ca:	10 e0       	ldi	r17, 0x00	; 0
+ 45e:	0d 2d       	mov	r16, r13
+ 460:	10 e0       	ldi	r17, 0x00	; 0
 			if (pgm_read_byte(&ASCII[c - 0x20][i/scale]) & (0x01 << j/scale)) {
- 4cc:	8f 2d       	mov	r24, r15
- 4ce:	62 2f       	mov	r22, r18
- 4d0:	0e 94 f5 02 	call	0x5ea	; 0x5ea <__udivmodqi4>
- 4d4:	fe 01       	movw	r30, r28
- 4d6:	e8 0f       	add	r30, r24
- 4d8:	f1 1d       	adc	r31, r1
- 4da:	e8 59       	subi	r30, 0x98	; 152
- 4dc:	ff 4f       	sbci	r31, 0xFF	; 255
- 4de:	e4 91       	lpm	r30, Z
- 4e0:	f0 e0       	ldi	r31, 0x00	; 0
- 4e2:	81 2f       	mov	r24, r17
- 4e4:	0e 94 f5 02 	call	0x5ea	; 0x5ea <__udivmodqi4>
- 4e8:	02 c0       	rjmp	.+4      	; 0x4ee <nokia__char+0x52>
- 4ea:	f5 95       	asr	r31
- 4ec:	e7 95       	ror	r30
- 4ee:	8a 95       	dec	r24
- 4f0:	e2 f7       	brpl	.-8      	; 0x4ea <nokia__char+0x4e>
- 4f2:	e0 ff       	sbrs	r30, 0
- 4f4:	06 c0       	rjmp	.+12     	; 0x502 <nokia__char+0x66>
+ 462:	8f 2d       	mov	r24, r15
+ 464:	62 2f       	mov	r22, r18
+ 466:	0e 94 9f 03 	call	0x73e	; 0x73e <__udivmodqi4>
+ 46a:	fe 01       	movw	r30, r28
+ 46c:	e8 0f       	add	r30, r24
+ 46e:	f1 1d       	adc	r31, r1
+ 470:	e8 59       	subi	r30, 0x98	; 152
+ 472:	ff 4f       	sbci	r31, 0xFF	; 255
+ 474:	e4 91       	lpm	r30, Z
+ 476:	f0 e0       	ldi	r31, 0x00	; 0
+ 478:	81 2f       	mov	r24, r17
+ 47a:	0e 94 9f 03 	call	0x73e	; 0x73e <__udivmodqi4>
+ 47e:	02 c0       	rjmp	.+4      	; 0x484 <nokia__char+0x52>
+ 480:	f5 95       	asr	r31
+ 482:	e7 95       	ror	r30
+ 484:	8a 95       	dec	r24
+ 486:	e2 f7       	brpl	.-8      	; 0x480 <nokia__char+0x4e>
+ 488:	e0 ff       	sbrs	r30, 0
+ 48a:	06 c0       	rjmp	.+12     	; 0x498 <nokia__char+0x66>
 				nokia__pixel(x + i, y + j, BLACK);
- 4f6:	41 e0       	ldi	r20, 0x01	; 1
- 4f8:	60 2f       	mov	r22, r16
- 4fa:	8e 2d       	mov	r24, r14
- 4fc:	0e 94 17 02 	call	0x42e	; 0x42e <nokia__pixel>
- 500:	05 c0       	rjmp	.+10     	; 0x50c <nokia__char+0x70>
+ 48c:	41 e0       	ldi	r20, 0x01	; 1
+ 48e:	60 2f       	mov	r22, r16
+ 490:	8e 2d       	mov	r24, r14
+ 492:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <nokia__pixel>
+ 496:	05 c0       	rjmp	.+10     	; 0x4a2 <nokia__char+0x70>
 			}
 			else {
 				nokia__pixel(x + i, y + j, WHITE);
- 502:	40 e0       	ldi	r20, 0x00	; 0
- 504:	60 2f       	mov	r22, r16
- 506:	8e 2d       	mov	r24, r14
- 508:	0e 94 17 02 	call	0x42e	; 0x42e <nokia__pixel>
+ 498:	40 e0       	ldi	r20, 0x00	; 0
+ 49a:	60 2f       	mov	r22, r16
+ 49c:	8e 2d       	mov	r24, r14
+ 49e:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <nokia__pixel>
 
 void nokia__char(char c, uint8_t x, uint8_t y) {
 	//char col;
 	for (uint8_t i = 0; i < 5*scale; ++i) {
 		//col = ASCII[c - 0x20][i];
 		for (uint8_t j = 0; j < 8*scale; ++j) {
- 50c:	1f 5f       	subi	r17, 0xFF	; 255
- 50e:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__data_start>
- 512:	0f 5f       	subi	r16, 0xFF	; 255
- 514:	41 2f       	mov	r20, r17
- 516:	50 e0       	ldi	r21, 0x00	; 0
- 518:	82 2f       	mov	r24, r18
- 51a:	90 e0       	ldi	r25, 0x00	; 0
- 51c:	88 0f       	add	r24, r24
- 51e:	99 1f       	adc	r25, r25
- 520:	88 0f       	add	r24, r24
- 522:	99 1f       	adc	r25, r25
- 524:	88 0f       	add	r24, r24
- 526:	99 1f       	adc	r25, r25
- 528:	48 17       	cp	r20, r24
- 52a:	59 07       	cpc	r21, r25
- 52c:	7c f2       	brlt	.-98     	; 0x4cc <nokia__char+0x30>
+ 4a2:	1f 5f       	subi	r17, 0xFF	; 255
+ 4a4:	20 91 3c 01 	lds	r18, 0x013C	; 0x80013c <scale>
+ 4a8:	0f 5f       	subi	r16, 0xFF	; 255
+ 4aa:	41 2f       	mov	r20, r17
+ 4ac:	50 e0       	ldi	r21, 0x00	; 0
+ 4ae:	82 2f       	mov	r24, r18
+ 4b0:	90 e0       	ldi	r25, 0x00	; 0
+ 4b2:	88 0f       	add	r24, r24
+ 4b4:	99 1f       	adc	r25, r25
+ 4b6:	88 0f       	add	r24, r24
+ 4b8:	99 1f       	adc	r25, r25
+ 4ba:	88 0f       	add	r24, r24
+ 4bc:	99 1f       	adc	r25, r25
+ 4be:	48 17       	cp	r20, r24
+ 4c0:	59 07       	cpc	r21, r25
+ 4c2:	7c f2       	brlt	.-98     	; 0x462 <nokia__char+0x30>
 }
 
 
 void nokia__char(char c, uint8_t x, uint8_t y) {
 	//char col;
 	for (uint8_t i = 0; i < 5*scale; ++i) {
- 52e:	f3 94       	inc	r15
- 530:	e3 94       	inc	r14
- 532:	2f 2d       	mov	r18, r15
- 534:	30 e0       	ldi	r19, 0x00	; 0
- 536:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
- 53a:	90 e0       	ldi	r25, 0x00	; 0
- 53c:	ac 01       	movw	r20, r24
- 53e:	44 0f       	add	r20, r20
- 540:	55 1f       	adc	r21, r21
- 542:	44 0f       	add	r20, r20
- 544:	55 1f       	adc	r21, r21
- 546:	84 0f       	add	r24, r20
- 548:	95 1f       	adc	r25, r21
- 54a:	28 17       	cp	r18, r24
- 54c:	39 07       	cpc	r19, r25
- 54e:	7c f0       	brlt	.+30     	; 0x56e <nokia__char+0xd2>
- 550:	13 c0       	rjmp	.+38     	; 0x578 <nokia__char+0xdc>
- 552:	d4 2e       	mov	r13, r20
- 554:	e6 2e       	mov	r14, r22
- 556:	f1 2c       	mov	r15, r1
+ 4c4:	f3 94       	inc	r15
+ 4c6:	e3 94       	inc	r14
+ 4c8:	2f 2d       	mov	r18, r15
+ 4ca:	30 e0       	ldi	r19, 0x00	; 0
+ 4cc:	80 91 3c 01 	lds	r24, 0x013C	; 0x80013c <scale>
+ 4d0:	90 e0       	ldi	r25, 0x00	; 0
+ 4d2:	ac 01       	movw	r20, r24
+ 4d4:	44 0f       	add	r20, r20
+ 4d6:	55 1f       	adc	r21, r21
+ 4d8:	44 0f       	add	r20, r20
+ 4da:	55 1f       	adc	r21, r21
+ 4dc:	84 0f       	add	r24, r20
+ 4de:	95 1f       	adc	r25, r21
+ 4e0:	28 17       	cp	r18, r24
+ 4e2:	39 07       	cpc	r19, r25
+ 4e4:	7c f0       	brlt	.+30     	; 0x504 <nokia__char+0xd2>
+ 4e6:	13 c0       	rjmp	.+38     	; 0x50e <nokia__char+0xdc>
+ 4e8:	d4 2e       	mov	r13, r20
+ 4ea:	e6 2e       	mov	r14, r22
+ 4ec:	f1 2c       	mov	r15, r1
 		//col = ASCII[c - 0x20][i];
 		for (uint8_t j = 0; j < 8*scale; ++j) {
 			if (pgm_read_byte(&ASCII[c - 0x20][i/scale]) & (0x01 << j/scale)) {
- 558:	c8 2f       	mov	r28, r24
- 55a:	d0 e0       	ldi	r29, 0x00	; 0
- 55c:	ce 01       	movw	r24, r28
- 55e:	80 97       	sbiw	r24, 0x20	; 32
- 560:	ec 01       	movw	r28, r24
- 562:	cc 0f       	add	r28, r28
- 564:	dd 1f       	adc	r29, r29
- 566:	cc 0f       	add	r28, r28
- 568:	dd 1f       	adc	r29, r29
- 56a:	c8 0f       	add	r28, r24
- 56c:	d9 1f       	adc	r29, r25
+ 4ee:	c8 2f       	mov	r28, r24
+ 4f0:	d0 e0       	ldi	r29, 0x00	; 0
+ 4f2:	ce 01       	movw	r24, r28
+ 4f4:	80 97       	sbiw	r24, 0x20	; 32
+ 4f6:	ec 01       	movw	r28, r24
+ 4f8:	cc 0f       	add	r28, r28
+ 4fa:	dd 1f       	adc	r29, r29
+ 4fc:	cc 0f       	add	r28, r28
+ 4fe:	dd 1f       	adc	r29, r29
+ 500:	c8 0f       	add	r28, r24
+ 502:	d9 1f       	adc	r29, r25
 
 void nokia__char(char c, uint8_t x, uint8_t y) {
 	//char col;
 	for (uint8_t i = 0; i < 5*scale; ++i) {
 		//col = ASCII[c - 0x20][i];
 		for (uint8_t j = 0; j < 8*scale; ++j) {
- 56e:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__data_start>
- 572:	21 11       	cpse	r18, r1
- 574:	a9 cf       	rjmp	.-174    	; 0x4c8 <nokia__char+0x2c>
- 576:	db cf       	rjmp	.-74     	; 0x52e <nokia__char+0x92>
+ 504:	20 91 3c 01 	lds	r18, 0x013C	; 0x80013c <scale>
+ 508:	21 11       	cpse	r18, r1
+ 50a:	a9 cf       	rjmp	.-174    	; 0x45e <nokia__char+0x2c>
+ 50c:	db cf       	rjmp	.-74     	; 0x4c4 <nokia__char+0x92>
 			else {
 				nokia__pixel(x + i, y + j, WHITE);
 			}
 		}
 	}
 }
- 578:	df 91       	pop	r29
- 57a:	cf 91       	pop	r28
- 57c:	1f 91       	pop	r17
- 57e:	0f 91       	pop	r16
- 580:	ff 90       	pop	r15
- 582:	ef 90       	pop	r14
- 584:	df 90       	pop	r13
- 586:	08 95       	ret
+ 50e:	df 91       	pop	r29
+ 510:	cf 91       	pop	r28
+ 512:	1f 91       	pop	r17
+ 514:	0f 91       	pop	r16
+ 516:	ff 90       	pop	r15
+ 518:	ef 90       	pop	r14
+ 51a:	df 90       	pop	r13
+ 51c:	08 95       	ret
 
-00000588 <nokia__str>:
+0000051e <nokia__str>:
 
 void nokia__str(char str[], uint8_t str_size, uint8_t x, uint8_t y) {
- 588:	ef 92       	push	r14
- 58a:	ff 92       	push	r15
- 58c:	0f 93       	push	r16
- 58e:	1f 93       	push	r17
- 590:	cf 93       	push	r28
- 592:	df 93       	push	r29
- 594:	c4 2f       	mov	r28, r20
- 596:	d2 2f       	mov	r29, r18
+ 51e:	ef 92       	push	r14
+ 520:	ff 92       	push	r15
+ 522:	0f 93       	push	r16
+ 524:	1f 93       	push	r17
+ 526:	cf 93       	push	r28
+ 528:	df 93       	push	r29
+ 52a:	c4 2f       	mov	r28, r20
+ 52c:	d2 2f       	mov	r29, r18
 	for (int i = 0; i < str_size; ++i) {
- 598:	66 23       	and	r22, r22
- 59a:	b1 f0       	breq	.+44     	; 0x5c8 <nokia__str+0x40>
- 59c:	8c 01       	movw	r16, r24
- 59e:	7c 01       	movw	r14, r24
- 5a0:	e6 0e       	add	r14, r22
- 5a2:	f1 1c       	adc	r15, r1
+ 52e:	66 23       	and	r22, r22
+ 530:	b1 f0       	breq	.+44     	; 0x55e <nokia__str+0x40>
+ 532:	8c 01       	movw	r16, r24
+ 534:	7c 01       	movw	r14, r24
+ 536:	e6 0e       	add	r14, r22
+ 538:	f1 1c       	adc	r15, r1
 		nokia__char(str[i], x, y);
- 5a4:	4d 2f       	mov	r20, r29
- 5a6:	6c 2f       	mov	r22, r28
- 5a8:	f8 01       	movw	r30, r16
- 5aa:	81 91       	ld	r24, Z+
- 5ac:	8f 01       	movw	r16, r30
- 5ae:	0e 94 4e 02 	call	0x49c	; 0x49c <nokia__char>
+ 53a:	4d 2f       	mov	r20, r29
+ 53c:	6c 2f       	mov	r22, r28
+ 53e:	f8 01       	movw	r30, r16
+ 540:	81 91       	ld	r24, Z+
+ 542:	8f 01       	movw	r16, r30
+ 544:	0e 94 19 02 	call	0x432	; 0x432 <nokia__char>
 		x += 5*scale + 1;
- 5b2:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__data_start>
- 5b6:	29 2f       	mov	r18, r25
- 5b8:	22 0f       	add	r18, r18
- 5ba:	22 0f       	add	r18, r18
- 5bc:	92 0f       	add	r25, r18
- 5be:	9f 5f       	subi	r25, 0xFF	; 255
- 5c0:	c9 0f       	add	r28, r25
+ 548:	90 91 3c 01 	lds	r25, 0x013C	; 0x80013c <scale>
+ 54c:	29 2f       	mov	r18, r25
+ 54e:	22 0f       	add	r18, r18
+ 550:	22 0f       	add	r18, r18
+ 552:	92 0f       	add	r25, r18
+ 554:	9f 5f       	subi	r25, 0xFF	; 255
+ 556:	c9 0f       	add	r28, r25
 		}
 	}
 }
 
 void nokia__str(char str[], uint8_t str_size, uint8_t x, uint8_t y) {
 	for (int i = 0; i < str_size; ++i) {
- 5c2:	0e 15       	cp	r16, r14
- 5c4:	1f 05       	cpc	r17, r15
- 5c6:	71 f7       	brne	.-36     	; 0x5a4 <nokia__str+0x1c>
+ 558:	0e 15       	cp	r16, r14
+ 55a:	1f 05       	cpc	r17, r15
+ 55c:	71 f7       	brne	.-36     	; 0x53a <nokia__str+0x1c>
 		nokia__char(str[i], x, y);
 		x += 5*scale + 1;
 	}
 }
- 5c8:	df 91       	pop	r29
- 5ca:	cf 91       	pop	r28
- 5cc:	1f 91       	pop	r17
- 5ce:	0f 91       	pop	r16
- 5d0:	ff 90       	pop	r15
- 5d2:	ef 90       	pop	r14
- 5d4:	08 95       	ret
+ 55e:	df 91       	pop	r29
+ 560:	cf 91       	pop	r28
+ 562:	1f 91       	pop	r17
+ 564:	0f 91       	pop	r16
+ 566:	ff 90       	pop	r15
+ 568:	ef 90       	pop	r14
+ 56a:	08 95       	ret
 
-000005d6 <spi__init>:
+0000056c <nokia__default>:
+
+char entries[4][15] = {"SELECT TO PING", "DISHES", "TRASH", "VACUUM"};
+
+void nokia__default() {
+	state = 1;
+ 56c:	81 e0       	ldi	r24, 0x01	; 1
+ 56e:	80 93 35 03 	sts	0x0335, r24	; 0x800335 <state>
+	nokia__cursor_origin();
+ 572:	0e 94 88 01 	call	0x310	; 0x310 <nokia__cursor_origin>
+	nokia__char('>', 16, 12);
+ 576:	4c e0       	ldi	r20, 0x0C	; 12
+ 578:	60 e1       	ldi	r22, 0x10	; 16
+ 57a:	8e e3       	ldi	r24, 0x3E	; 62
+ 57c:	0e 94 19 02 	call	0x432	; 0x432 <nokia__char>
+	nokia__str(entries[0], strlen(entries[0]), 0, 0);
+ 580:	e0 e0       	ldi	r30, 0x00	; 0
+ 582:	f1 e0       	ldi	r31, 0x01	; 1
+ 584:	01 90       	ld	r0, Z+
+ 586:	00 20       	and	r0, r0
+ 588:	e9 f7       	brne	.-6      	; 0x584 <nokia__default+0x18>
+ 58a:	31 97       	sbiw	r30, 0x01	; 1
+ 58c:	bf 01       	movw	r22, r30
+ 58e:	60 50       	subi	r22, 0x00	; 0
+ 590:	71 40       	sbci	r23, 0x01	; 1
+ 592:	20 e0       	ldi	r18, 0x00	; 0
+ 594:	40 e0       	ldi	r20, 0x00	; 0
+ 596:	80 e0       	ldi	r24, 0x00	; 0
+ 598:	91 e0       	ldi	r25, 0x01	; 1
+ 59a:	0e 94 8f 02 	call	0x51e	; 0x51e <nokia__str>
+	nokia__str(entries[1], strlen(entries[1]), 24, 12);
+ 59e:	ef e0       	ldi	r30, 0x0F	; 15
+ 5a0:	f1 e0       	ldi	r31, 0x01	; 1
+ 5a2:	01 90       	ld	r0, Z+
+ 5a4:	00 20       	and	r0, r0
+ 5a6:	e9 f7       	brne	.-6      	; 0x5a2 <nokia__default+0x36>
+ 5a8:	bf 01       	movw	r22, r30
+ 5aa:	60 51       	subi	r22, 0x10	; 16
+ 5ac:	71 40       	sbci	r23, 0x01	; 1
+ 5ae:	2c e0       	ldi	r18, 0x0C	; 12
+ 5b0:	48 e1       	ldi	r20, 0x18	; 24
+ 5b2:	8f e0       	ldi	r24, 0x0F	; 15
+ 5b4:	91 e0       	ldi	r25, 0x01	; 1
+ 5b6:	0e 94 8f 02 	call	0x51e	; 0x51e <nokia__str>
+	nokia__str(entries[2], strlen(entries[2]), 24, 24);
+ 5ba:	ee e1       	ldi	r30, 0x1E	; 30
+ 5bc:	f1 e0       	ldi	r31, 0x01	; 1
+ 5be:	01 90       	ld	r0, Z+
+ 5c0:	00 20       	and	r0, r0
+ 5c2:	e9 f7       	brne	.-6      	; 0x5be <nokia__default+0x52>
+ 5c4:	bf 01       	movw	r22, r30
+ 5c6:	6f 51       	subi	r22, 0x1F	; 31
+ 5c8:	71 40       	sbci	r23, 0x01	; 1
+ 5ca:	28 e1       	ldi	r18, 0x18	; 24
+ 5cc:	48 e1       	ldi	r20, 0x18	; 24
+ 5ce:	8e e1       	ldi	r24, 0x1E	; 30
+ 5d0:	91 e0       	ldi	r25, 0x01	; 1
+ 5d2:	0e 94 8f 02 	call	0x51e	; 0x51e <nokia__str>
+	nokia__str(entries[3], strlen(entries[3]), 24, 36);
+ 5d6:	ed e2       	ldi	r30, 0x2D	; 45
+ 5d8:	f1 e0       	ldi	r31, 0x01	; 1
+ 5da:	01 90       	ld	r0, Z+
+ 5dc:	00 20       	and	r0, r0
+ 5de:	e9 f7       	brne	.-6      	; 0x5da <nokia__default+0x6e>
+ 5e0:	bf 01       	movw	r22, r30
+ 5e2:	6e 52       	subi	r22, 0x2E	; 46
+ 5e4:	71 40       	sbci	r23, 0x01	; 1
+ 5e6:	24 e2       	ldi	r18, 0x24	; 36
+ 5e8:	48 e1       	ldi	r20, 0x18	; 24
+ 5ea:	8d e2       	ldi	r24, 0x2D	; 45
+ 5ec:	91 e0       	ldi	r25, 0x01	; 1
+ 5ee:	0e 94 8f 02 	call	0x51e	; 0x51e <nokia__str>
+	nokia__update();
+ 5f2:	0e 94 8d 01 	call	0x31a	; 0x31a <nokia__update>
+ 5f6:	08 95       	ret
+
+000005f8 <nokia__next_state>:
+}
+
+void nokia__next_state() {
+	
+	
+	nokia__char(' ', 16, 12*state);
+ 5f8:	40 91 35 03 	lds	r20, 0x0335	; 0x800335 <state>
+ 5fc:	84 2f       	mov	r24, r20
+ 5fe:	88 0f       	add	r24, r24
+ 600:	48 0f       	add	r20, r24
+ 602:	44 0f       	add	r20, r20
+ 604:	44 0f       	add	r20, r20
+ 606:	60 e1       	ldi	r22, 0x10	; 16
+ 608:	80 e2       	ldi	r24, 0x20	; 32
+ 60a:	0e 94 19 02 	call	0x432	; 0x432 <nokia__char>
+	state++;
+ 60e:	80 91 35 03 	lds	r24, 0x0335	; 0x800335 <state>
+ 612:	8f 5f       	subi	r24, 0xFF	; 255
+	if (state == 4)
+ 614:	84 30       	cpi	r24, 0x04	; 4
+ 616:	19 f0       	breq	.+6      	; 0x61e <nokia__next_state+0x26>
+
+void nokia__next_state() {
+	
+	
+	nokia__char(' ', 16, 12*state);
+	state++;
+ 618:	80 93 35 03 	sts	0x0335, r24	; 0x800335 <state>
+ 61c:	03 c0       	rjmp	.+6      	; 0x624 <nokia__next_state+0x2c>
+	if (state == 4)
+		state = 1;
+ 61e:	81 e0       	ldi	r24, 0x01	; 1
+ 620:	80 93 35 03 	sts	0x0335, r24	; 0x800335 <state>
+	nokia__char('>', 16, 12*state);
+ 624:	40 91 35 03 	lds	r20, 0x0335	; 0x800335 <state>
+ 628:	84 2f       	mov	r24, r20
+ 62a:	88 0f       	add	r24, r24
+ 62c:	48 0f       	add	r20, r24
+ 62e:	44 0f       	add	r20, r20
+ 630:	44 0f       	add	r20, r20
+ 632:	60 e1       	ldi	r22, 0x10	; 16
+ 634:	8e e3       	ldi	r24, 0x3E	; 62
+ 636:	0e 94 19 02 	call	0x432	; 0x432 <nokia__char>
+	nokia__update();
+ 63a:	0e 94 8d 01 	call	0x31a	; 0x31a <nokia__update>
+ 63e:	08 95       	ret
+
+00000640 <nokia__select_state>:
+}
+
+void nokia__select_state() {
+	nokia__str("---", 3, 0, 12*state);
+ 640:	20 91 35 03 	lds	r18, 0x0335	; 0x800335 <state>
+ 644:	82 2f       	mov	r24, r18
+ 646:	88 0f       	add	r24, r24
+ 648:	28 0f       	add	r18, r24
+ 64a:	22 0f       	add	r18, r18
+ 64c:	22 0f       	add	r18, r18
+ 64e:	40 e0       	ldi	r20, 0x00	; 0
+ 650:	63 e0       	ldi	r22, 0x03	; 3
+ 652:	86 e3       	ldi	r24, 0x36	; 54
+ 654:	93 e0       	ldi	r25, 0x03	; 3
+ 656:	0e 94 8f 02 	call	0x51e	; 0x51e <nokia__str>
+	nokia__update();
+ 65a:	0e 94 8d 01 	call	0x31a	; 0x31a <nokia__update>
+	esp__transmit_state();
+ 65e:	0e 94 5e 01 	call	0x2bc	; 0x2bc <esp__transmit_state>
+ 662:	2f ef       	ldi	r18, 0xFF	; 255
+ 664:	8e e9       	ldi	r24, 0x9E	; 158
+ 666:	94 e2       	ldi	r25, 0x24	; 36
+ 668:	21 50       	subi	r18, 0x01	; 1
+ 66a:	80 40       	sbci	r24, 0x00	; 0
+ 66c:	90 40       	sbci	r25, 0x00	; 0
+ 66e:	e1 f7       	brne	.-8      	; 0x668 <nokia__select_state+0x28>
+ 670:	00 c0       	rjmp	.+0      	; 0x672 <nokia__select_state+0x32>
+ 672:	00 00       	nop
+	_delay_ms(750);
+	nokia__str("   ", 3, 0, 12*state);
+ 674:	20 91 35 03 	lds	r18, 0x0335	; 0x800335 <state>
+ 678:	82 2f       	mov	r24, r18
+ 67a:	88 0f       	add	r24, r24
+ 67c:	28 0f       	add	r18, r24
+ 67e:	22 0f       	add	r18, r18
+ 680:	22 0f       	add	r18, r18
+ 682:	40 e0       	ldi	r20, 0x00	; 0
+ 684:	63 e0       	ldi	r22, 0x03	; 3
+ 686:	8a e3       	ldi	r24, 0x3A	; 58
+ 688:	93 e0       	ldi	r25, 0x03	; 3
+ 68a:	0e 94 8f 02 	call	0x51e	; 0x51e <nokia__str>
+	nokia__update();
+ 68e:	0e 94 8d 01 	call	0x31a	; 0x31a <nokia__update>
+ 692:	08 95       	ret
+
+00000694 <spi__init>:
 	SPCR |= (1<<SPE);
 }
 
 void spi__stop(void) {
 	//Disable SPI, Set SPI Enable bit to 0;
 	SPCR &= ~(1<<SPE);
- 5d6:	8c e2       	ldi	r24, 0x2C	; 44
- 5d8:	84 b9       	out	0x04, r24	; 4
- 5da:	81 e5       	ldi	r24, 0x51	; 81
- 5dc:	8c bd       	out	0x2c, r24	; 44
- 5de:	08 95       	ret
+ 694:	8c e2       	ldi	r24, 0x2C	; 44
+ 696:	84 b9       	out	0x04, r24	; 4
+ 698:	81 e5       	ldi	r24, 0x51	; 81
+ 69a:	8c bd       	out	0x2c, r24	; 44
+ 69c:	08 95       	ret
 
-000005e0 <spi__write>:
+0000069e <spi__write>:
 }
 
 void spi__write(uint8_t data) {
 	//Load SPI data register with data
 	SPDR = data;
- 5e0:	8e bd       	out	0x2e, r24	; 46
+ 69e:	8e bd       	out	0x2e, r24	; 46
 	
 	//PORTD &= ~(1<<CE);
 	//PORTB &= ~(1<<CE);
 	
 	//Wait for data transmission to finish
 	while (!(SPSR & (1<<SPIF)));
- 5e2:	0d b4       	in	r0, 0x2d	; 45
- 5e4:	07 fe       	sbrs	r0, 7
- 5e6:	fd cf       	rjmp	.-6      	; 0x5e2 <spi__write+0x2>
+ 6a0:	0d b4       	in	r0, 0x2d	; 45
+ 6a2:	07 fe       	sbrs	r0, 7
+ 6a4:	fd cf       	rjmp	.-6      	; 0x6a0 <spi__write+0x2>
 	
 	//PORTD |= (1<<CE);
 	//PORTB |= (1<<CE);
 }
- 5e8:	08 95       	ret
+ 6a6:	08 95       	ret
 
-000005ea <__udivmodqi4>:
- 5ea:	99 1b       	sub	r25, r25
- 5ec:	79 e0       	ldi	r23, 0x09	; 9
- 5ee:	04 c0       	rjmp	.+8      	; 0x5f8 <__udivmodqi4_ep>
+000006a8 <uart__init>:
+#include "uart.h"
 
-000005f0 <__udivmodqi4_loop>:
- 5f0:	99 1f       	adc	r25, r25
- 5f2:	96 17       	cp	r25, r22
- 5f4:	08 f0       	brcs	.+2      	; 0x5f8 <__udivmodqi4_ep>
- 5f6:	96 1b       	sub	r25, r22
+void uart__init(uint32_t baud_rate) {
+	// UBRn f_osc/(16 Baud) - 1
+	uint32_t uart_baud_rate; 
+	if(baud_rate != 9600) {
+ 6a8:	60 38       	cpi	r22, 0x80	; 128
+ 6aa:	25 e2       	ldi	r18, 0x25	; 37
+ 6ac:	72 07       	cpc	r23, r18
+ 6ae:	81 05       	cpc	r24, r1
+ 6b0:	91 05       	cpc	r25, r1
+ 6b2:	09 f1       	breq	.+66     	; 0x6f6 <uart__init+0x4e>
+		uart_baud_rate = F_CPU / (16 * baud_rate) - 1;
+ 6b4:	dc 01       	movw	r26, r24
+ 6b6:	cb 01       	movw	r24, r22
+ 6b8:	88 0f       	add	r24, r24
+ 6ba:	99 1f       	adc	r25, r25
+ 6bc:	aa 1f       	adc	r26, r26
+ 6be:	bb 1f       	adc	r27, r27
+ 6c0:	88 0f       	add	r24, r24
+ 6c2:	99 1f       	adc	r25, r25
+ 6c4:	aa 1f       	adc	r26, r26
+ 6c6:	bb 1f       	adc	r27, r27
+ 6c8:	9c 01       	movw	r18, r24
+ 6ca:	ad 01       	movw	r20, r26
+ 6cc:	22 0f       	add	r18, r18
+ 6ce:	33 1f       	adc	r19, r19
+ 6d0:	44 1f       	adc	r20, r20
+ 6d2:	55 1f       	adc	r21, r21
+ 6d4:	22 0f       	add	r18, r18
+ 6d6:	33 1f       	adc	r19, r19
+ 6d8:	44 1f       	adc	r20, r20
+ 6da:	55 1f       	adc	r21, r21
+ 6dc:	60 e0       	ldi	r22, 0x00	; 0
+ 6de:	74 e2       	ldi	r23, 0x24	; 36
+ 6e0:	84 ef       	ldi	r24, 0xF4	; 244
+ 6e2:	90 e0       	ldi	r25, 0x00	; 0
+ 6e4:	0e 94 ab 03 	call	0x756	; 0x756 <__udivmodsi4>
+ 6e8:	ba 01       	movw	r22, r20
+ 6ea:	a9 01       	movw	r20, r18
+ 6ec:	41 50       	subi	r20, 0x01	; 1
+ 6ee:	51 09       	sbc	r21, r1
+ 6f0:	61 09       	sbc	r22, r1
+ 6f2:	71 09       	sbc	r23, r1
+ 6f4:	04 c0       	rjmp	.+8      	; 0x6fe <uart__init+0x56>
+	}
+	else {
+		uart_baud_rate = (F_CPU / 8 / baud_rate - 1) / 2;
+ 6f6:	47 e6       	ldi	r20, 0x67	; 103
+ 6f8:	50 e0       	ldi	r21, 0x00	; 0
+ 6fa:	60 e0       	ldi	r22, 0x00	; 0
+ 6fc:	70 e0       	ldi	r23, 0x00	; 0
+	}
+	UBRR0H = (uint8_t)(uart_baud_rate >> 8);
+ 6fe:	bb 27       	eor	r27, r27
+ 700:	a7 2f       	mov	r26, r23
+ 702:	96 2f       	mov	r25, r22
+ 704:	85 2f       	mov	r24, r21
+ 706:	80 93 c5 00 	sts	0x00C5, r24	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+	UBRR0L = (uint8_t)uart_baud_rate;
+ 70a:	40 93 c4 00 	sts	0x00C4, r20	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
 
-000005f8 <__udivmodqi4_ep>:
- 5f8:	88 1f       	adc	r24, r24
- 5fa:	7a 95       	dec	r23
- 5fc:	c9 f7       	brne	.-14     	; 0x5f0 <__udivmodqi4_loop>
- 5fe:	80 95       	com	r24
- 600:	08 95       	ret
+	// Enable receiver and transmitter
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
+ 70e:	88 e1       	ldi	r24, 0x18	; 24
+ 710:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
+	// Set Frame: 8 data bit, 1 stop bit
+	UCSR0C = (1 << USBS0) | (3 << UCSZ00);
+ 714:	8e e0       	ldi	r24, 0x0E	; 14
+ 716:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
+ 71a:	08 95       	ret
 
-00000602 <_exit>:
- 602:	f8 94       	cli
+0000071c <uart__is_ready>:
+}
 
-00000604 <__stop_program>:
- 604:	ff cf       	rjmp	.-2      	; 0x604 <__stop_program>
+bool uart__is_ready(void) {
+	// The transmit buffer is empty and is ready to transmit
+	return UCSR0A & (1 << UDRE0); 
+ 71c:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+}
+ 720:	85 fb       	bst	r24, 5
+ 722:	88 27       	eor	r24, r24
+ 724:	80 f9       	bld	r24, 0
+ 726:	08 95       	ret
+
+00000728 <uart__polled_put>:
+
+
+bool uart__polled_put(uint8_t data) {
+ 728:	cf 93       	push	r28
+ 72a:	c8 2f       	mov	r28, r24
+	// Interrupt is disabled, need to poll data 
+	bool status = false;
+	while(!uart__is_ready());
+ 72c:	0e 94 8e 03 	call	0x71c	; 0x71c <uart__is_ready>
+ 730:	88 23       	and	r24, r24
+ 732:	e1 f3       	breq	.-8      	; 0x72c <uart__polled_put+0x4>
+	UDR0 = data;
+ 734:	c0 93 c6 00 	sts	0x00C6, r28	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+	return status; 
+}
+ 738:	80 e0       	ldi	r24, 0x00	; 0
+ 73a:	cf 91       	pop	r28
+ 73c:	08 95       	ret
+
+0000073e <__udivmodqi4>:
+ 73e:	99 1b       	sub	r25, r25
+ 740:	79 e0       	ldi	r23, 0x09	; 9
+ 742:	04 c0       	rjmp	.+8      	; 0x74c <__udivmodqi4_ep>
+
+00000744 <__udivmodqi4_loop>:
+ 744:	99 1f       	adc	r25, r25
+ 746:	96 17       	cp	r25, r22
+ 748:	08 f0       	brcs	.+2      	; 0x74c <__udivmodqi4_ep>
+ 74a:	96 1b       	sub	r25, r22
+
+0000074c <__udivmodqi4_ep>:
+ 74c:	88 1f       	adc	r24, r24
+ 74e:	7a 95       	dec	r23
+ 750:	c9 f7       	brne	.-14     	; 0x744 <__udivmodqi4_loop>
+ 752:	80 95       	com	r24
+ 754:	08 95       	ret
+
+00000756 <__udivmodsi4>:
+ 756:	a1 e2       	ldi	r26, 0x21	; 33
+ 758:	1a 2e       	mov	r1, r26
+ 75a:	aa 1b       	sub	r26, r26
+ 75c:	bb 1b       	sub	r27, r27
+ 75e:	fd 01       	movw	r30, r26
+ 760:	0d c0       	rjmp	.+26     	; 0x77c <__udivmodsi4_ep>
+
+00000762 <__udivmodsi4_loop>:
+ 762:	aa 1f       	adc	r26, r26
+ 764:	bb 1f       	adc	r27, r27
+ 766:	ee 1f       	adc	r30, r30
+ 768:	ff 1f       	adc	r31, r31
+ 76a:	a2 17       	cp	r26, r18
+ 76c:	b3 07       	cpc	r27, r19
+ 76e:	e4 07       	cpc	r30, r20
+ 770:	f5 07       	cpc	r31, r21
+ 772:	20 f0       	brcs	.+8      	; 0x77c <__udivmodsi4_ep>
+ 774:	a2 1b       	sub	r26, r18
+ 776:	b3 0b       	sbc	r27, r19
+ 778:	e4 0b       	sbc	r30, r20
+ 77a:	f5 0b       	sbc	r31, r21
+
+0000077c <__udivmodsi4_ep>:
+ 77c:	66 1f       	adc	r22, r22
+ 77e:	77 1f       	adc	r23, r23
+ 780:	88 1f       	adc	r24, r24
+ 782:	99 1f       	adc	r25, r25
+ 784:	1a 94       	dec	r1
+ 786:	69 f7       	brne	.-38     	; 0x762 <__udivmodsi4_loop>
+ 788:	60 95       	com	r22
+ 78a:	70 95       	com	r23
+ 78c:	80 95       	com	r24
+ 78e:	90 95       	com	r25
+ 790:	9b 01       	movw	r18, r22
+ 792:	ac 01       	movw	r20, r24
+ 794:	bd 01       	movw	r22, r26
+ 796:	cf 01       	movw	r24, r30
+ 798:	08 95       	ret
+
+0000079a <_exit>:
+ 79a:	f8 94       	cli
+
+0000079c <__stop_program>:
+ 79c:	ff cf       	rjmp	.-2      	; 0x79c <__stop_program>

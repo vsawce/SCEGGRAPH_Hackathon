@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+buttons.c
+
 esp8266_esp01.c
 
 main.c
