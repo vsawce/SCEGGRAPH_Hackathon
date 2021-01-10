@@ -2,6 +2,8 @@ Archive member included to satisfy reference by file (symbol)
 
 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodqi4.o)
                               nokia_5110.o (__udivmodqi4)
+f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                              uart.o (__udivmodsi4)
 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
                               F:/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o (exit)
 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
@@ -11,6 +13,12 @@ Discarded input sections
 
  .data          0x00000000        0x0 F:/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .bss           0x00000000        0x0 F:/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .text          0x00000000        0x0 esp8266_esp01.o
+ .data          0x00000000        0x0 esp8266_esp01.o
+ .bss           0x00000000        0x0 esp8266_esp01.o
+ .debug_line    0x00000000        0x0 esp8266_esp01.o
+ .debug_str     0x00000000      0x11a esp8266_esp01.o
+ .comment       0x00000000       0x31 esp8266_esp01.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
@@ -32,6 +40,46 @@ Discarded input sections
                 0x00000000        0xa spi.o
  .text.spi__tranceiver
                 0x00000000        0xc spi.o
+ .text          0x00000000        0x0 uart.o
+ .data          0x00000000        0x0 uart.o
+ .bss           0x00000000        0x0 uart.o
+ .text.uart__init
+                0x00000000       0x74 uart.o
+ .text.uart__is_ready
+                0x00000000        0xc uart.o
+ .text.uart__polled_put
+                0x00000000       0x16 uart.o
+ .text.uart__receive
+                0x00000000       0x10 uart.o
+ .debug_info    0x00000000      0x12f uart.o
+ .debug_abbrev  0x00000000       0xc1 uart.o
+ .debug_loc     0x00000000       0xd0 uart.o
+ .debug_aranges
+                0x00000000       0x38 uart.o
+ .debug_ranges  0x00000000       0x28 uart.o
+ .debug_line    0x00000000      0x11f uart.o
+ .debug_str     0x00000000      0x1ed uart.o
+ .comment       0x00000000       0x31 uart.o
+ .debug_frame   0x00000000       0x5c uart.o
+ .text          0x00000000        0x0 uart_printf.o
+ .data          0x00000000        0x0 uart_printf.o
+ .bss           0x00000000        0x0 uart_printf.o
+ .text.uart__printf
+                0x00000000       0x36 uart_printf.o
+ .text.uart__print_new_line
+                0x00000000        0xe uart_printf.o
+ .text.uart__print_hex
+                0x00000000       0x46 uart_printf.o
+ .debug_info    0x00000000      0x1b5 uart_printf.o
+ .debug_abbrev  0x00000000       0xf2 uart_printf.o
+ .debug_loc     0x00000000      0x187 uart_printf.o
+ .debug_aranges
+                0x00000000       0x30 uart_printf.o
+ .debug_ranges  0x00000000       0x20 uart_printf.o
+ .debug_line    0x00000000      0x144 uart_printf.o
+ .debug_str     0x00000000      0x202 uart_printf.o
+ .comment       0x00000000       0x31 uart_printf.o
+ .debug_frame   0x00000000       0x64 uart_printf.o
  .text          0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodqi4.o)
  .data          0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodqi4.o)
  .bss           0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodqi4.o)
@@ -46,6 +94,22 @@ Discarded input sections
                 0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodqi4.o)
  .text.libgcc.fixed
                 0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodqi4.o)
+ .text          0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .data          0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .bss           0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.mul
+                0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.div
+                0x00000000       0x44 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc   0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
  .text          0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
@@ -95,9 +159,12 @@ Linker script and memory map
 
 Address of section .data set to 0x800100
 LOAD F:/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
+LOAD esp8266_esp01.o
 LOAD main.o
 LOAD nokia_5110.o
 LOAD spi.o
+LOAD uart.o
+LOAD uart_printf.o
 START GROUP
 LOAD f:/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
 END GROUP
