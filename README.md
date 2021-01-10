@@ -11,7 +11,10 @@ situations are typically handled; some examples of this messy nature include how
 <br/>
 Happy Household helps to centralize helpful household data on the cloud that can be simulataneously accessed by multiple people through Discord, and can be arguably more effective in connecting people compared to traditional means.<br/>
 Happy Household is also designed with IoT integration in mind, having developed a prototype for a wireless embedded system that can interact with the Discord bot only with a USB 5v power supply and WiFi.<br/>
-
+In terms of challenges, Chris felt that relearning Javascript was definitely the biggest challenge. He has worked a bit with JavaScript before, but a lot of that was based on front-end React. He has also never worked with Discord bots, 
+so learning how to do familiarize himself with Discord.js was a challenge as well.<br/>
+For Vincent, the largest challenge that he faced was working with the wireless tech and integrating the hardware with the Discord bot. Vincent had to work with C, JavaScript, and a bit of HTTP, of which JavaScript and HTTP were completely 
+new to him. Vincent also ran into many hardware-based road bumps along the way, like having to work around the excessive current draw of the ESP8266 WiFi board by using a questionably soldered USB 5v connector.<br/>
 ## Project Team Members
 **Vincent Saw** - [GitHub](https://github.com/vsawce) | [LinkedIn](https://www.linkedin.com/in/vincent-saw-810361162/)<br/>
 **Christopher Tom** - [GitHub](https://github.com/Christopher-Tom) | [LinkedIn](https://www.linkedin.com/in/christopher-tom/)<br/>
