@@ -16,7 +16,11 @@ Happy Household is also designed with IoT integration in mind, having developed 
 **Vincent Saw** - [GitHub](https://github.com/vsawce) | [LinkedIn](https://www.linkedin.com/in/vincent-saw-810361162/)<br/>
 **Christopher Tom** - [GitHub](https://github.com/Christopher-Tom) | [LinkedIn](https://www.linkedin.com/in/christopher-tom/)<br/>
 ## Demonstrations
--> Screenshots, etc go here<br/>
+![All available bot commands](media/bot_available_commands.png)<br/>
+![A demonstration of the list commands](media/bot_list_demo.png)<br/>
+![A demonstration of the chores commands](media/bot_chores_demo.png)<br/>
+![Photo of the wireless embedded system](media/avr_es_photo.png)<br/>
+[Video demonstration of the wireless embedded system](https://photos.app.goo.gl/xRHRcCGVzfJfgxV27)<br/>
 ## Tech/Framework
 * [Node.js](https://nodejs.org/en/) - Selected JS environment for Discord bot development  
 * [Discord.js](https://discord.js.org/#/) - Discord bot API  
