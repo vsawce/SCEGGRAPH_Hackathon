@@ -13,6 +13,8 @@
 #define NOKIA_HEIGHT 48
 #define NOKIA_BYTE_SIZE 504 //NOKIA_WIDTH*NOKIA_HEIGHT/8
 
+extern uint8_t state = 1;
+
 static const uint8_t ASCII[][5] PROGMEM = {
 	// First 32 characters (0x00-0x19) are ignored. These are
 	// non-displayable, control characters.
@@ -269,4 +271,37 @@ void nokia__str(char str[], uint8_t str_size, uint8_t x, uint8_t y) {
 		nokia__char(str[i], x, y);
 		x += 5*scale + 1;
 	}
+}
+
+char entries[4][15] = {"SELECT TO PING", "DISHES", "TRASH", "VACUUM"};
+
+void nokia__default() {
+	state = 1;
+	nokia__cursor_origin();
+	nokia__char('>', 16, 12);
+	nokia__str(entries[0], strlen(entries[0]), 0, 0);
+	nokia__str(entries[1], strlen(entries[1]), 24, 12);
+	nokia__str(entries[2], strlen(entries[2]), 24, 24);
+	nokia__str(entries[3], strlen(entries[3]), 24, 36);
+	nokia__update();
+}
+
+void nokia__next_state() {
+	
+	
+	nokia__char(' ', 16, 12*state);
+	state++;
+	if (state == 4)
+		state = 1;
+	nokia__char('>', 16, 12*state);
+	nokia__update();
+}
+
+void nokia__select_state() {
+	nokia__str("---", 3, 0, 12*state);
+	nokia__update();
+	esp__transmit_state();
+	_delay_ms(750);
+	nokia__str("   ", 3, 0, 12*state);
+	nokia__update();
 }

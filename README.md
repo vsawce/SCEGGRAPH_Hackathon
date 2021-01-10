@@ -1,9 +1,17 @@
 ![](media/sceggraph_hackathon_logo.png) <br/>
 <br/>
-# SCEGGRAPH Hackathon: Project Name Here
+# SCEGGRAPH Hackathon: Happy Household
 Remote hackathon held from 1/8/21-1/10/21 for SJSU students, hosted by ACM SIGGRAPH Student Chapter and SCE of SJSU.<br/>
-## Objective
-The purpose of this project is to develop a new way of connecting people virtually. This project is only for fun and educational purposes.<br/>
+## Description
+The purpose of Happy Household was to develop a better way of connecting people through virtual means: we aimed to solve some common issues that arise among those living in the same household.<br/>
+One such issue is keeping track of whose turn it is to take out the trash. Solving this issue is especially helpful in households or dorms with multiple roommates and also encourages a fair and balanced chore routine.<br/>
+<br/>
+Another one of these issues includes a disorganized shopping list. When someone goes out to shop or buy food for the household, there is a potential for forgetting certain items due to the messy nature of how these 
+situations are typically handled; some examples of this messy nature include how certain requests can be drowned out by irrelevant text history and also simply the lack of a written medium to store the shopping list.<br/>
+<br/>
+Happy Household helps to centralize helpful household data on the cloud that can be simulataneously accessed by multiple people through Discord, and can be arguably more effective in connecting people compared to traditional means.<br/>
+Happy Household is also designed with IoT integration in mind, having developed a prototype for a wireless embedded system that can interact with the Discord bot only with a USB 5v power supply and WiFi.<br/>
+
 ## Project Team Members
 **Vincent Saw** - [GitHub](https://github.com/vsawce) | [LinkedIn](https://www.linkedin.com/in/vincent-saw-810361162/)<br/>
 **Christopher Tom** - [GitHub](https://github.com/Christopher-Tom) | [LinkedIn](https://www.linkedin.com/in/christopher-tom/)<br/>
@@ -12,7 +20,7 @@ The purpose of this project is to develop a new way of connecting people virtual
 ## Tech/Framework
 * [Node.js](https://nodejs.org/en/) - Selected JS environment for Discord bot development  
 * [Discord.js](https://discord.js.org/#/) - Discord bot API  
-* [AVR-Libc](https://www.nongnu.org/avr-libc/) - Main, SPI, UART, and Nokia 5110 Driver  
+* [AVR-Libc](https://www.nongnu.org/avr-libc/) - Main, SPI, UART, buttons, and Nokia 5110 Driver  
 * [ESP8266 Arduino Library](https://github.com/esp8266/Arduino#installing-with-boards-manager) - ESP-01 WiFi Driver  
 
 ## Quick Links

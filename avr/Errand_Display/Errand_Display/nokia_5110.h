@@ -6,12 +6,14 @@
 #include <util/delay.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 #include "spi.h"
+#include "esp8266_esp01.h"
 
 #define WHITE 0 
 #define BLACK 1
 
-extern uint8_t scale;
+extern uint8_t scale, state;
 
 void nokia__cmd(uint8_t cmd);
 void nokia__data(uint8_t data);
@@ -25,5 +27,8 @@ void nokia__pixel(uint8_t x, uint8_t y, uint8_t whtblk);
 void nokia__scale(uint8_t sc);
 void nokia__char(char c, uint8_t x, uint8_t y);
 void nokia__str(char str[], uint8_t str_size, uint8_t x, uint8_t y);
+void nokia__default(); //Load menu
+void nokia__next_state(); //Move cursor
+void nokia__select_state();
 
 #endif /* NOKIA_5110_H_ */

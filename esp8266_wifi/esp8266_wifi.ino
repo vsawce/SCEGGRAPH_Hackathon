@@ -9,7 +9,10 @@ void setup() {
   Serial.begin(9600);
   wifi__connect();
   discord__send(":flushed:");
+  //getLatestMessage();
 }
 
 void loop() {
+  //getLatestMessage();
+  xmit();
 }
