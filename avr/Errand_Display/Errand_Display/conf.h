@@ -13,6 +13,13 @@
 /*---------------------------------------------------------------------------/
 / I/O PORTS
 /---------------------------------------------------------------------------*/
+/* BUTTONS */
+#define BUT1 PINC0 //Left
+#define BUT2 PINC1 //Right
+
+#define PCINT_BUT1 (1<<PCINT8)
+#define PCINT_BUT2 (1<<PCINT9)
+
 /* SPI */
 #define CE	 2	//PB2, CE
 #define MOSI 3	//PB3, DIN
