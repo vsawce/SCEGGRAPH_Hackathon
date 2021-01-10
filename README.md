@@ -2,31 +2,26 @@
 <br/>
 # SCEGGRAPH Hackathon: Project Name Here
 Remote hackathon held from 1/8/21-1/10/21 for SJSU students, hosted by ACM SIGGRAPH Student Chapter and SCE of SJSU.<br/>
-<br/>
-## **Objective**<br/>
-The purpose of this project is to develop a new way of connecting people virtually. This project is only for fun and educational purposes.
-<br/>
-## **Project Team Members**<br/>
+## Objective
+The purpose of this project is to develop a new way of connecting people virtually. This project is only for fun and educational purposes.<br/>
+## Project Team Members
 **Vincent Saw** - [GitHub](https://github.com/vsawce) | [LinkedIn](https://www.linkedin.com/in/vincent-saw-810361162/)<br/>
 **Christopher Tom** - [GitHub](https://github.com/Christopher-Tom) | [LinkedIn](https://www.linkedin.com/in/christopher-tom/)<br/>
-<br/>
-## **Demonstrations**<br/>
+## Demonstrations
 -> Screenshots, etc go here<br/>
-<br/>
-## **Tech/Framework**<br/>
-- [Node.js](https://nodejs.org/en/): Selected JS environment for Discord bot development<br/>
-- [Discord.js](https://discord.js.org/#/): Discord bot API<br/>
-- [AVR-Libc](https://www.nongnu.org/avr-libc/): Main, SPI, UART, and Nokia 5110 Driver<br/>
-- [ESP8266 Arduino Library](https://github.com/esp8266/Arduino#installing-with-boards-manager): ESP-01 WiFi Driver<br/>
-<br/>
-## **Quick Links**<br/>
+## Tech/Framework
+* [Node.js](https://nodejs.org/en/) - Selected JS environment for Discord bot development  
+* [Discord.js](https://discord.js.org/#/) - Discord bot API  
+* [AVR-Libc](https://www.nongnu.org/avr-libc/) - Main, SPI, UART, and Nokia 5110 Driver  
+* [ESP8266 Arduino Library](https://github.com/esp8266/Arduino#installing-with-boards-manager) - ESP-01 WiFi Driver  
+
+## Quick Links
 [SCEGGRAPH Hackathon Page](https://sceggraph.devpost.com/)<br/>
 [Discord.js Guide](https://discordjs.guide/)<br/>
 [ATMega328p Datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)<br/>
 [Nokia 5110 Datasheet](https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf)<br/>
 [ESP8266 ESP-01 Datasheet](http://www.microchip.ua/wireless/esp01.pdf)<br/>
-<br/>
-## **License**<br/>
+## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br/>
 This project utilizes the MIT License.<br/>
 
