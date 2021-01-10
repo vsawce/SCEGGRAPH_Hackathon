@@ -1,4 +1,8 @@
 #define CONFIG_SSID "Doinky"
+
 #define CONFIG_PWD "QuinLikesMan"
-#define CONFIG_WEBHOOK "/api/webhooks/797607184434593813/jw_TUVCF-ygx3oq0w0w_a24K_c-SuHc8gDD3x0YP1xhwmtiSFtggtNJl7niMcu3mvlkL"
+
+/* TO GET WEBHOOK, DO !chores init AND COPY WEBHOOK LINK THROUGH INTEGRATION. INCLUDE EVERYTHING AFTER discord.com */
+#define CONFIG_WEBHOOK "/api/webhooks/797737040103735326/X8HeZIgmS9Yq7ByW_WD6j5fDjftG-6UjOQ6gAgocb63XCdhNR8SfdM5cn4I4Y1x5YDWU"
+
 #define CONFIG_TTS "false"

@@ -6,13 +6,15 @@
 const char ssid[] = CONFIG_SSID;    //Network SSID
 const char pwd[] = CONFIG_PWD;    //WPA Network password
 
-const char server[] = "discordapp.com";
+const char host[] = "discordapp.com";
 const int port = 443;
 const String discord_webhook = CONFIG_WEBHOOK;
 const String discord_tts = CONFIG_TTS;
 
+uint8_t incomingByte = 0;
+
 WiFiClientSecure client;
-HttpClient http_client = HttpClient(client, server, port);
+HttpClient http_client = HttpClient(client, host, port);
 
 void wifi__connect() {
   // We start by connecting to a WiFi network
@@ -53,4 +55,17 @@ void discord__send(String ct) {
   Serial.println(status_code);
   Serial.print("HTTP response: ");
   Serial.println(response);
+  
+}
+
+void xmit() {
+  if (Serial.available() > 0) {
+    incomingByte = Serial.read();
+    if (incomingByte == '1')
+      discord__send("!chores remind dishes"); 
+    else if (incomingByte == '2')
+      discord__send("!chores remind trash"); 
+    else if (incomingByte == '3')
+      discord__send("!chores remind vacuum"); 
+  }
 }
