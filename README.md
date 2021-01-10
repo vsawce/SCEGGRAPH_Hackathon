@@ -25,7 +25,7 @@ Happy Household is also designed with IoT integration in mind, having developed 
 ### Photo of the wireless embedded system
 ![](media/avr_es_photo.png)<br/>
 ### Video demonstration of the wireless embedded system
-[](https://photos.app.goo.gl/xRHRcCGVzfJfgxV27)<br/>
+[Video Link](https://photos.app.goo.gl/xRHRcCGVzfJfgxV27)<br/>
 ## Tech/Framework
 * [Node.js](https://nodejs.org/en/) - Selected JS environment for Discord bot development  
 * [Discord.js](https://discord.js.org/#/) - Discord bot API  
