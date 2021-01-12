@@ -4,13 +4,16 @@
 Remote hackathon held from 1/8/21-1/10/21 for SJSU students, hosted by ACM SIGGRAPH Student Chapter and SCE of SJSU.<br/>
 ## Description
 The purpose of Happy Household was to develop a better way of connecting people through virtual means: we aimed to solve some common issues that arise in our household as roommates.<br/>
+<br/>
 One such issue is keeping track of whose turn it is to take out the trash. Solving this issue is especially helpful in households or dorms with multiple roommates and also encourages a fair and balanced chore routine.<br/>
 <br/>
 Another one of these issues includes a disorganized shopping list. When someone goes out to shop or buy food for the household, there is a potential for forgetting certain items due to the messy nature of how these 
 situations are typically handled; some examples of this messy nature include how certain requests can be drowned out by irrelevant text history and also simply the lack of a written medium to store the shopping list.<br/>
 <br/>
 Happy Household helps to centralize helpful household data on the cloud that can be simulataneously accessed by multiple people through Discord, and can be arguably more effective in connecting people compared to traditional means.<br/>
+<br/>
 Happy Household is also designed with IoT integration in mind, having developed a prototype for a wireless embedded system that can interact with the Discord bot only with a USB 5v power supply and WiFi.<br/>
+<br/>
 In terms of challenges, Chris felt that relearning Javascript was definitely the biggest challenge. He has worked a bit with JavaScript before, but a lot of that was based on front-end React. He has also never worked with Discord bots, 
 so learning how to do familiarize himself with Discord.js was a challenge as well.<br/>
 For Vincent, the largest challenge that he faced was working with the wireless tech and integrating the hardware with the Discord bot. Vincent had to work with C, JavaScript, and a bit of HTTP, of which JavaScript and HTTP were completely 
